@@ -55,10 +55,27 @@ class App extends Component {
       ]})
     }
     render() {
+
+      //This is the camelCase javascript keywords not the css . It internally get converted to css and added as the style in the final HTML.
+      //By Default css is not added to your code . But when you import css styles into your componenet this css styling is added to your html by webpack Component.After making respective changes you can see the browser html.
+      //We should user inline style as it will apply only onto the particular compoenent not on the complete App.
+      
+      const style  = {
+
+        backgroundColor:'White',
+        font : 'inherit',
+        border:'1px solid blue',
+        padding:'8px',
+        cursor:'pointer'
+
+        
+      }
       return (
         <div className="App">
          <h1>Hi I am a React App</h1>
-         <button onClick = {this.switchNameHandler.bind(this,'Anubhav Goyal')}>Switch Name</button>
+         <button 
+         style={style}
+         onClick = {this.switchNameHandler.bind(this,'Anubhav Goyal')}>Switch Name</button>
          <Person name ={this.state.Person[0].name} age = {this.state.Person[0].age} >My Hobbies are : Football</Person> <br />
          <Person name ={this.state.Person[1].name}  age ={this.state.Person[1].age} click = {this.switchNameHandler.bind(this,'Anubhav Goyal')} nameChange = {this.nameChangedHandler}/> <br />
          <Person name ={this.state.Person[2].name}  age ={this.state.Person[2].age} click = {()=>this.switchNameHandler('Abhinav Goyal')}/> <br />
