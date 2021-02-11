@@ -27,9 +27,19 @@ class App extends Component {
           {'name':'Anubhav', 'age':26},
           {'name':'Abhinav','age':24},
           {'name':'Manu','age':28}
-        ]
+        ],
+        showPerson:false
     }
 
+
+    //Toggles to make persons hide or show
+
+    togglePersonHandler = ()=> {
+      const doesShowPerson = this.state.showPerson
+      this.setState({
+        showPerson:!doesShowPerson
+      })
+    }
 
     switchNameHandler = (newName) => {
 
@@ -45,7 +55,7 @@ class App extends Component {
 
     nameChangedHandler = (event) => {
 
-      console.log("Was Clicked")
+      console.log("Was Clicked  ")
 
 
       this.setState({Person : [
@@ -75,10 +85,20 @@ class App extends Component {
          <h1>Hi I am a React App</h1>
          <button 
          style={style}
-         onClick = {this.switchNameHandler.bind(this,'Anubhav Goyal')}>Switch Name</button>
-         <Person name ={this.state.Person[0].name} age = {this.state.Person[0].age} >My Hobbies are : Football</Person> <br />
-         <Person name ={this.state.Person[1].name}  age ={this.state.Person[1].age} click = {this.switchNameHandler.bind(this,'Anubhav Goyal')} nameChange = {this.nameChangedHandler}/> <br />
-         <Person name ={this.state.Person[2].name}  age ={this.state.Person[2].age} click = {()=>this.switchNameHandler('Abhinav Goyal')}/> <br />
+         onClick = {this.togglePersonHandler.bind(this)}
+        // onClick = {this.switchNameHandler.bind(this,'Anubhav Goyal')}>Switch Name</button>
+        >
+          Toggle Persons
+        </button>
+         {
+           this.state.showPerson ?
+           <div>
+            <Person name ={this.state.Person[0].name} age = {this.state.Person[0].age} >My Hobbies are : Football</Person> <br />
+           < Person name ={this.state.Person[1].name}  age ={this.state.Person[1].age} click = {this.switchNameHandler.bind(this,'Anubhav Goyal')} nameChange = {this.nameChangedHandler}/> <br />
+            <Person name ={this.state.Person[2].name}  age ={this.state.Person[2].age} click = {()=>this.switchNameHandler('Abhinav Goyal')}/> <br />
+         </div> : null
+
+    }
 
         </div>
       );
