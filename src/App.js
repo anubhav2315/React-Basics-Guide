@@ -80,6 +80,26 @@ class App extends Component {
 
         
       }
+
+
+      let persons = null;
+
+      //Since it is not JSX here we can use javascript if else condition and put as many conditions as possible 
+      if(this.state.showPerson) {
+        console.log("this is coming ")
+        
+        //We can add some JSX code here 
+        persons = (
+
+          <div>
+          <Person name ={this.state.Person[0].name} age = {this.state.Person[0].age} >My Hobbies are : Football</Person> <br />
+         < Person name ={this.state.Person[1].name}  age ={this.state.Person[1].age} click = {this.switchNameHandler.bind(this,'Anubhav Goyal')} nameChange = {this.nameChangedHandler}/> <br />
+          <Person name ={this.state.Person[2].name}  age ={this.state.Person[2].age} click = {()=>this.switchNameHandler('Abhinav Goyal')}/> <br />
+       </div>
+
+
+        );
+      }
       return (
         <div className="App">
          <h1>Hi I am a React App</h1>
@@ -90,16 +110,7 @@ class App extends Component {
         >
           Toggle Persons
         </button>
-         {
-           this.state.showPerson ?
-           <div>
-            <Person name ={this.state.Person[0].name} age = {this.state.Person[0].age} >My Hobbies are : Football</Person> <br />
-           < Person name ={this.state.Person[1].name}  age ={this.state.Person[1].age} click = {this.switchNameHandler.bind(this,'Anubhav Goyal')} nameChange = {this.nameChangedHandler}/> <br />
-            <Person name ={this.state.Person[2].name}  age ={this.state.Person[2].age} click = {()=>this.switchNameHandler('Abhinav Goyal')}/> <br />
-         </div> : null
-
-    }
-
+        {persons}
         </div>
       );
 
